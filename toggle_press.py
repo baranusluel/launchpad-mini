@@ -16,5 +16,3 @@ try:
                 outputPort.send(message)
 except KeyboardInterrupt:
     pass
-
-print()

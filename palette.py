@@ -1,8 +1,7 @@
 """
-Outputs all possible colors across all the buttons (i.e. color palette)
+Outputs all possible colors across the buttons with matching values (i.e. note = velocity) to output a color palette.
 """
 
-from __future__ import print_function
 import mido
 from mido import Message
 
@@ -11,9 +10,11 @@ outputPortName = "Launchpad Mini 1"
 try:
     with mido.open_output(outputPortName) as outputPort:
         print(f'Using {outputPort}')
-        for x in range(0, 121):
-            outputPort.send(Message('note_on', note=x, velocity=x))
+        for r in range(0, 4):
+          for c in range(0, 4):
+              n = c + r * 16;
+              msg = Message('note_on', note=n, velocity=n)
+              print(msg);
+              outputPort.send(msg)
 except KeyboardInterrupt:
     pass
-
-print()

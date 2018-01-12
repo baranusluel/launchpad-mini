@@ -1,42 +1,26 @@
 """
-Send random notes to the output port.
-
-Taken from Mido examples.
+Send given note to given port with given velocity.
 """
 
-
-from __future__ import print_function
 import sys
-import time
-import random
 import mido
 from mido import Message
 
 
-if len(sys.argv) > 1:
+if len(sys.argv) == 4:
     portname = sys.argv[1]
+    note = int(sys.argv[2])
+    velocity = int(sys.argv[3])
+    print("yes");
 else:
-    portname = None  # Use default port
-
-# A pentatonic scale
-notes = [60, 62, 64, 67, 69, 72]
+    print("Usage: python send.py <MIDI device> <note: [0-120]> <velocity>");
+    sys.exit();
 
 try:
     with mido.open_output(portname, autoreset=True) as port:
         print('Using {}'.format(port))
-        while True:
-            note = random.choice(notes)
-
-            on = Message('note_on', note=note)
-            print('Sending {}'.format(on))
-            port.send(on)
-            time.sleep(0.05)
-
-            off = Message('note_off', note=note)
-            print('Sending {}'.format(off))
-            port.send(off)
-            time.sleep(0.1)
+        msg = Message('note_on', note=note, velocity=velocity)
+        print('Sending {}'.format(msg))
+        port.send(msg)
 except KeyboardInterrupt:
     pass
-
-print()

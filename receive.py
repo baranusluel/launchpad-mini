@@ -3,7 +3,7 @@ Receive messages from the input port and print them out.
 
 Taken from Mido examples.
 """
-from __future__ import print_function
+
 import sys
 import mido
 

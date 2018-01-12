@@ -4,9 +4,7 @@ List available ports.
 Taken from Mido examples.
 """
 
-from __future__ import print_function
 import mido
-
 
 def print_ports(heading, port_names):
     print(heading)
