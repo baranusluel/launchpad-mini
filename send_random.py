@@ -8,8 +8,10 @@ from random import *
 import mido
 from mido import Message
 
+outputPortName = "Launchpad Mini 1"
+
 try:
-    with mido.open_output("Launchpad Mini 1", autoreset=True) as port:
+    with mido.open_output(outputPortName, autoreset=True) as port:
         print('Using {}'.format(port))
         while True:
             note = randint(0, 121)
