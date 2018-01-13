@@ -20,7 +20,6 @@ try:
                 leftDone = False
                 rightDone = False
                 while not (leftDone and rightDone):
-                    print(str(left) + ", " + str(right))
                     if not leftDone:
                         outputPort.send(Message('note_on', note=left, velocity=127))
                     if not rightDone:
